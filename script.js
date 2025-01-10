@@ -1,3 +1,18 @@
+// Initialize Lenis
+const lenis = new Lenis({
+    duration: 2,
+    easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
+    smooth: true
+  });
+
+  // Lenis RAF
+  function raf(time) {
+    lenis.raf(time);
+    requestAnimationFrame(raf);
+  }
+
+  requestAnimationFrame(raf);
+
 const navMenu = document.getElementById('nav-menu'),
       navToggle = document.getElementById('nav-toggle'),
       navClose = document.getElementById('nav-close')
@@ -30,7 +45,7 @@ const imageUpload = document.getElementById('imageUpload');
             };
 
             reader.readAsDataURL(file);
-        });
+});
 
 /* Menu hidden */
 if(navClose){
